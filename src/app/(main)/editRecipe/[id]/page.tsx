@@ -35,7 +35,6 @@ export default function EditRecipePage() {
         { description: string }[]
     >([]);
 
-    /* ===== LOAD DATA ===== */
     useEffect(() => {
         dispatch(GetCategory());
 
@@ -65,7 +64,6 @@ export default function EditRecipePage() {
             .catch(() => toast.error("Ошибка загрузки рецепта ❌"));
     }, [dispatch, recipeId]);
 
-    /* ===== SUBMIT ===== */
     const handleSubmit = async () => {
         if (!title.trim() || !description.trim()) {
             toast.error("Заполните обязательные поля");
@@ -80,12 +78,10 @@ export default function EditRecipePage() {
         formData.append("cook_time", String(cookTime));
         formData.append("servings", String(servings));
 
-        // nullable
         if (categoryId) {
             formData.append("category", String(categoryId));
         }
 
-        // image optional
         if (image) {
             formData.append("image", image);
         }
@@ -94,7 +90,6 @@ export default function EditRecipePage() {
             formData.append("video", video);
         }
 
-        // JSON → string (Swagger!)
         formData.append(
             "ingredients",
             JSON.stringify(
@@ -190,9 +185,8 @@ export default function EditRecipePage() {
                 ))}
             </select>
 
-            {/* IMAGE */}
             <label className="flex cursor-pointer items-center gap-4 rounded-xl border-2 border-dashed border-gray-300 p-4 transition hover:border-orange-500 hover:bg-orange-50">
-                <ImageIcon className="h-8 w-8 text-orange-500" />
+                <ImageIconnpm run dev className="h-8 w-8 text-orange-500" />
                 <div>
                     <p className="font-medium">Загрузить изображение</p>
                     <p className="text-sm text-gray-500">
@@ -208,7 +202,6 @@ export default function EditRecipePage() {
                 />
             </label>
 
-            {/* VIDEO */}
             <label className="flex cursor-pointer items-center gap-4 rounded-xl border-2 border-dashed border-gray-300 p-4 transition hover:border-orange-500 hover:bg-orange-50">
                 <Video className="h-8 w-8 text-orange-500" />
                 <div>
