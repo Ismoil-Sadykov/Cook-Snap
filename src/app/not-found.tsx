@@ -1,10 +1,19 @@
 'use client'
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Home, Search } from "lucide-react";
 
 export default function NotFound() {
+  const [hasAccess, setHasAccess] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setHasAccess(!!localStorage.getItem("access"));
+  }, []);
+
+  if (hasAccess === null) return null; // или loader
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-between bg-[#FFF9F4] px-4">
       <div className="flex flex-col items-center justify-center flex-1 text-center">
@@ -28,23 +37,13 @@ export default function NotFound() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          {localStorage.getItem("access") ? (
-            <Link
-              href="/home"
-              className="flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-white hover:bg-orange-600 transition"
-            >
-              <Home size={18} />
-              Вернуться на главную
-            </Link>
-          ) : (
-            <Link
-              href="/"
-              className="flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-white hover:bg-orange-600 transition"
-            >
-              <Home size={18} />
-              Вернуться на главную
-            </Link>
-          )}
+          <Link
+            href={hasAccess ? "/home" : "/"}
+            className="flex items-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-white hover:bg-orange-600 transition"
+          >
+            <Home size={18} />
+            Вернуться на главную
+          </Link>
 
           <Link
             href="/recipes"
@@ -56,7 +55,6 @@ export default function NotFound() {
         </div>
       </div>
 
-      {/* Footer */}
       <footer className="pb-6 text-center text-xs text-gray-400">
         <div className="flex justify-center gap-6 mb-3">
           <Link href="/about">О нас</Link>

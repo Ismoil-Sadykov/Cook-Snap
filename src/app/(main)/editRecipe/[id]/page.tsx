@@ -186,7 +186,7 @@ export default function EditRecipePage() {
             </select>
 
             <label className="flex cursor-pointer items-center gap-4 rounded-xl border-2 border-dashed border-gray-300 p-4 transition hover:border-orange-500 hover:bg-orange-50">
-                <ImageIconnpm run dev className="h-8 w-8 text-orange-500" />
+                <ImageIcon className="h-8 w-8 text-orange-500" />
                 <div>
                     <p className="font-medium">Загрузить изображение</p>
                     <p className="text-sm text-gray-500">

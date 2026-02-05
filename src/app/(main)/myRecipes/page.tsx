@@ -9,11 +9,17 @@ import { DeleteRecipe, GetMyRecipes } from "@/src/api/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+export type RecipeStatus = 'published' | 'pending' | 'draft'
+
 export default function MyRecipesPage() {
   const dispatch = useDispatch<AppDispatch>();
   const { recipes, loading } = useSelector((state: RootState) => state.counter);
 
-  const statusMap = {
+
+  const statusMap: Record<
+    RecipeStatus,
+    { label: string; className: string }
+  > = {
     published: {
       label: "Опубликовано",
       className: "bg-green-100 text-green-700",
@@ -27,6 +33,7 @@ export default function MyRecipesPage() {
       className: "bg-gray-100 text-gray-700",
     },
   };
+
 
   const router = useRouter()
 

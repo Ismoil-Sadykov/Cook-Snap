@@ -1,3 +1,5 @@
+import { RecipeStatus } from "../app/(main)/myRecipes/page";
+
 export interface UserProfile {
   id: number;
   username: string;
@@ -38,7 +40,7 @@ export interface Recipe {
   country: Country;
   category: Category;
   author: string;
-  status: string;
+  status: RecipeStatus;
   prep_time: number;
   cook_time: number;
   total_time: number;
@@ -47,6 +49,7 @@ export interface Recipe {
   instructions: Instruction[];
   created_at: string;
   updated_at: string;
+  video?: string | null;
 }
 
 export interface RecipeResponse {
